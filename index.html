@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport">
+	<title>hello world</title>
+	<link rel="stylesheet" href="./dist/css/main.css">
+</head>
+<body>
+	<div class="container">
+		<article class="wrapper">
+			<header>
+				<span class="more">
+					<div></div>
+				</span>
+				<span class="h-title">Home</span>
+				<span class="h-logo"></span>
+			</header> <!-- end top header -->
+			<section class="index-box">
+				<img src="./dist/images/logo-normal.png" alt="logo">
+				<p class="hw-title">HelloWorld</p>
+				<div class="hw-intro">
+					<p>Hack forward,until limitless.</p>
+				  <p>life is but a tale,told by hacker.</p>
+				</div>
+				<p class="see-video">观看简介视频</p>
+			</section>
+		</article><!--end index main-->
+		<article class="video-page">
+			<span class="close-video-btn">+</span>
+			<video data-src="./dist/video/video.mp4" controls autoplay>
+				你的浏览器不支持html5 video，请使用chrome等标准浏览器。
+			</video>
+		</article>
+		<article data-show="false" class="main-nav">
+			<section class="nav-header">
+				<img src="./dist/images/logo-big.png" alt="logo">
+				<p class="hw-title">HelloWorld</p>
+			</section>
+			<nav class="nav-list">
+				<ul>
+					<li><img src="./dist/images/home.png"><a href="#">Home</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">Introduction</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">News</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">JoinUs</a></li>
+				</ul>
+			</nav>
+		</article><!--end left nav -->
+	</div>
+	<script src="./dist/js/init.js"></script>
+	<script src="./dist/js/main.js"></script>
+</body>
+</html>

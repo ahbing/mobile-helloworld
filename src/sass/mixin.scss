@@ -1,0 +1,69 @@
+@mixin px2rem($name, $px){
+    // 适配 uc qq 浏览器
+    @include px2px($name, $px);
+    #{$name}: $px / 196 * 1rem;
+}
+//想要在不同dpr下保持一致的css属性可以用px2px
+@mixin px2px($name, $px){
+    #{$name}: round($px / 2) * 1px;
+    [data-dpr="2"] & {
+        #{$name}: $px * 1px;
+    }
+    // for mx3
+    [data-dpr="2.5"] & {
+        #{$name}: round($px * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        #{$name}: round($px * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        #{$name}: round($px / 2 * 3) * 1px
+    }
+    // for 三星note4
+    [data-dpr="4"] & {
+        #{$name}: $px * 2px;
+    }
+}
+
+@mixin center{
+  position: absolute;
+  left: 0;top: 0;right:0;bottom: 0;
+  margin: auto;
+}
+@mixin vCenter{
+  position: absolute;
+  top: 50%;
+  -webkit-transform:translateY(-50%);
+  -moz-transform:translateY(-50%);
+  -ms-transform:translateY(-50%);
+  transform:translateY(-50%);
+}
+
+@mixin topCenter($top:0){
+  position: absolute;
+  left: 0;right:0;
+  @include px2rem('top',$top);
+  margin: auto;
+}
+
+@mixin oRotate($deg:0deg){
+  -moz-transform:rotate($deg*1deg);
+  -webkit-transform:rotate($deg*1deg);
+  -ms-transform:rotate($deg*1deg);
+  transform:rotate($deg*1deg);
+}
+@mixin leftInOut($left:0){
+  left: $left;
+  -webkit-transition:all .3s ease-in;
+  -moz-transition:all .3s ease-in;
+  -ms-transition:all .3s ease-in;
+  transition:all .3s ease-in;
+}
+@mixin fadeInOut($v:0){
+  opacity: $v;
+  -webkit-transition:all .6s ease-in;
+  -moz-transition:all .6s ease-in;
+  -ms-transition:all .6s ease-in;
+  transition:all .6s ease-in;
+}

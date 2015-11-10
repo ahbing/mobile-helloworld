@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport">
+	<title>hello world</title>
+	<link rel="stylesheet" href="./dist/css/main.css">
+</head>
+<body>
+	<div class="container">
+		<article class="wrapper">
+			<header>
+				<span class="more">
+					<div></div>
+				</span>
+				<span class="h-title">JoinUs</span>
+				<span class="h-logo"></span>
+			</header> <!-- end top header -->
+			<section class="form-box">
+				<form action="#" method="#">
+					<p>
+						<input type="text" name="name" placeholder="请输入姓名" required>
+					</p>
+					<p>
+						<!-- <select name="sex">
+							<option value="female">女</option>
+							<option value="male">男</option>
+						</select> -->
+					</p>
+
+					<p>
+						<input type="text" name="sex" placeholder="请选择性别">
+					</p>
+					<p>
+						<input type="text" name="college" placeholder="请输入院系">
+					</p>
+					<p>
+						<input type="text" name="number" placeholder="请输入学号" required>
+					</p>
+					<p>
+						<input type="text" name="tel" placeholder="请输入手机号" required>
+					</p>
+					<p>
+						<input type="text" name="department" list="deList"
+					 placeholder="请选择意向部门">
+					 <datalist id="deList">
+ 						<option value="design"></option>
+ 						<option value="front-end"></option>
+ 						<option value="back-end"></option>
+ 						<option value="server"></option>
+ 					</datalist>
+				 </p>
+				 <p>
+					 <textarea type="text" name="intro" maxLength="140" placeholder='请填写自我介绍（140字符之内）'>
+ 					 </textarea>
+				 </p>
+
+					<button>提交</button>
+				</form>
+			</section>
+		</article><!--end index main-->
+
+		<article data-show="false" class="main-nav">
+			<section class="nav-header">
+				<img src="./dist/images/logo-big.png" alt="logo">
+				<p class="hw-title">HelloWorld</p>
+			</section>
+			<nav class="nav-list">
+				<ul>
+					<li><img src="./dist/images/home.png"><a href="#">Home</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">Introduction</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">News</a></li>
+					<li><img src="./dist/images/home.png"><a href="#">JoinUs</a></li>
+				</ul>
+			</nav>
+		</article><!--end left nav -->
+	</div>
+	<script src="./dist/js/init.js"></script>
+	<script src="./dist/js/main.js"></script>
+</body>
+</html>

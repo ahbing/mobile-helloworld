@@ -1,0 +1,264 @@
+/*
+
+index page scss entry
+
+	index
+		| - base
+		| - mixin
+		| - animation
+		| - main
+
+ */
+
+@import "base.scss";
+@import "mixin.scss";
+@import "animation.scss";
+
+$color:#9B9B9B;
+$wh:100%;
+html,body{
+	width: $wh;
+	height: $wh;
+	color: $color;
+	background: #fff;
+}
+body{
+	position: relative;
+	body{font-family:Helvetica;}
+	@include px2px('font-size',36);
+}
+.container{
+	$w:72%;
+	position: relative;
+	overflow: hidden;
+	width: $wh;
+	height: $wh;
+	>.main-nav{
+		width: $w;
+		height: $wh;
+		position: absolute;
+		top: 0;
+		left: -$w;
+		background: #fff;
+		border-right:2px solid $color;
+		.nav-header{
+			text-align: center;
+			width: $w;
+			>img{
+				@include px2rem('width',200);
+				@include px2rem('height',200);
+			  @include topCenter(106);
+			}
+			>.hw-title{
+				@include px2px('font-size',48);
+				@include topCenter(330);
+			}
+		}
+		.nav-list{
+			@include px2rem('width',296);
+			@include topCenter(460);
+			li{
+				@include px2rem('width',360);
+				@include px2rem('margin-bottom',60);
+				>img{
+					@include px2rem('width',40);
+					@include px2rem('height',40);
+				}
+				>a{
+					color: $color;
+					text-decoration: none;
+					@include px2px('font-size',40);
+					@include px2rem('line-height',48);
+					@include px2rem('margin-left',36);
+				}
+			}
+		}
+	}
+	.left-out{
+		@include leftInOut(-$w);
+	}
+	.left-in{
+		@include leftInOut();
+		// uc qq 360 等国产浏览器不支持 animation
+	}
+}
+.video-page{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index:-1;
+	background-color: rgba(0, 0, 0, .95);
+	opacity: 0;
+	>.close-video-btn{
+		padding: 0;
+		margin: 0;
+		position: absolute;
+		@include px2rem('right',40);
+		@include px2rem('top',40);
+		display: inline-block;
+		@include px2rem('width',60);
+		@include px2rem('height',60);
+		text-align: center;
+		@include px2px('font-size',60);
+		@include px2rem('line-height',60);
+		color: #fff;
+		@include oRotate(45);
+	}
+	>video{
+		display: none;
+		max-width: 100%;
+		@include topCenter(400);
+	}
+}
+.show-video-page{
+	z-index: 23333;
+	@include fadeInOut(1);
+}
+.hide-video-page{
+	z-index:-1;
+	@include fadeInOut();
+}
+// end video page
+
+.wrapper{
+	position: absolute;
+	width: $wh;
+	height: $wh;
+	>header{
+		$h:110;
+		width: $wh;
+		@include px2rem('height',$h);
+		border-bottom: 1px solid $color;
+		@include px2px('border-width',2);
+		position: relative;
+		text-align: center;
+		overflow: hidden;
+		>span{
+			display: inline-block;
+			@include px2rem('line-height',$h);
+			@include px2px('font-size',36);
+		}
+	}
+	.more{
+		@include vCenter;
+		@include px2rem('left',30);
+		@include px2rem('width',66);
+		@include px2rem('height',66);
+		>div{
+			@include center;
+			@include px2rem('height',6);
+			@include px2rem('width',32);
+			background: $color;
+		}
+		&:before{
+			@include center;
+			@include px2rem('top',-20);
+			display: block;
+			content: '';
+			@include px2rem('height',6);
+			@include px2rem('width',32);
+			background: $color;
+		}
+		&:after{
+			@include center;
+			@include px2rem('top',20);
+			display: block;
+			content: '';
+			@include px2rem('height',6);
+			@include px2rem('width',32);
+			background: $color;
+		}
+	}
+	.h-logo{
+		@include vCenter;
+		@include px2rem('right',30);
+		@include px2rem('width',70);
+		@include px2rem('height',70);
+		background: url('./../images/logo-normal.png') no-repeat left top;
+		background-size: cover;
+	}
+	>.index-box{
+		position: relative;
+		width: $wh;
+		height: 100%;
+		text-align: center;
+		>img{
+			@include topCenter(254);
+			@include px2rem('width',100);
+			@include px2rem('width',100);
+
+		}
+		>.hw-title{
+			@include topCenter(380);
+			@include px2rem('font-size',48);
+		}
+		>.hw-intro{
+			@include px2rem('line-height',58);
+			@include px2px('font-size',36);
+			@include topCenter(468);
+		}
+		>.see-video{
+			@include px2rem('width',218);
+			@include px2rem('height',50);
+			@include px2px('font-size',36);
+			@include topCenter(700);
+			@include px2rem('left',-36);
+			// background: red;
+			&:before{
+				display: inline-block;
+				content: '';
+				@include px2rem('width',36);
+				@include px2rem('height',36);
+				position: absolute;
+				@include px2rem('right',-46);
+				border-radius: 100%;
+				background-color: $color;
+			}
+			&:after{
+				display: inline-block;
+				content: '';
+				width: 0;
+				height: 0;
+				border: 1px solid transparent;
+				@include px2rem('border-width',10);
+				border-right-width: none;
+				border-left-color: #fff;
+				position: absolute;
+				@include px2rem('top',7);
+				@include px2rem('right',-46);
+			}
+		}
+	}
+}  //end index wrapper
+
+
+
+// joinUs
+
+.form-box{
+	width:100%;
+	height: 100%;
+	>form{
+		width: 100%;
+		@include topCenter(180);
+		text-align: center;
+	}
+	input,button{
+		display: inline-block;
+		@include px2rem('width',540);
+		@include px2rem('height',50);
+		@include px2rem('margin-bottom',58);
+
+		@include px2px('font-size',28);
+		@include px2rem('padding-left',8);
+		@include px2rem('border-radius',8);
+		border: 2px solid $color;
+
+	}
+	button{
+		@include px2px('padding-left',0);
+		border: 2px solid $color;
+		color: $color;
+		background: #fff;
+	}
+}

@@ -1,0 +1,79 @@
+/*
+  左边呼出
+ */
+@-webkit-keyframes leftIn{
+	$w:72%;
+	0%{
+		left:-$w;
+	}
+	100%{
+		left: 0;
+	}
+}
+@-moz-keyframes leftIn{
+	$w:72%;
+	0%{
+		left:-$w;
+	}
+	100%{
+		left: 0;
+	}
+}
+@-ms-keyframes leftIn{
+	$w:72%;
+	0%{
+		left:-$w;
+	}
+	100%{
+		left: 0;
+	}
+}
+@keyframes leftIn{
+	$w:72%;
+	0%{
+		left:-$w;
+	}
+	100%{
+		left: 0;
+	}
+}
+
+/*
+  左边隐藏
+ */
+@-webkit-keyframes leftOut{
+	$w:72%;
+	0%{
+		left:0;
+	}
+	100%{
+		left: -$w;
+	}
+}
+@-moz-keyframes leftOut{
+	$w:72%;
+	0%{
+		left:0;
+	}
+	100%{
+		left: -$w;
+	}
+}
+@-ms-keyframes leftOut{
+	$w:72%;
+	0%{
+		left:0;
+	}
+	100%{
+		left: -$w;
+	}
+}
+@keyframes leftOut{
+	$w:72%;
+	0%{
+		left:0;
+	}
+	100%{
+		left: -$w;
+	}
+}
