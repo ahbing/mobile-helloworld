@@ -26,6 +26,7 @@ body{
 	position: relative;
 	body{font-family:Helvetica;}
 	@include px2px('font-size',36);
+	-webkit-overflow-scrolling: touch;
 }
 .container{
 	$w:72%;
@@ -238,22 +239,36 @@ body{
 .form-box{
 	width:100%;
 	height: 100%;
+	overflow: auto;
 	>form{
+		overflow: auto;
+		// @include px2rem('margin-top',60);
 		width: 100%;
-		@include topCenter(180);
+		height: 100%;
 		text-align: center;
 	}
-	input,button{
+	input,
+	textarea,
+	button{
 		display: inline-block;
 		@include px2rem('width',540);
 		@include px2rem('height',50);
-		@include px2rem('margin-bottom',58);
-
+		@include px2rem('margin-top',48);
 		@include px2px('font-size',28);
 		@include px2rem('padding-left',8);
 		@include px2rem('border-radius',8);
 		border: 2px solid $color;
-
+	}
+	textarea{
+		@include px2rem('height',100);
+		@include px2rem('margin-top',20);
+	}
+	label{
+		display: inline-block;
+		@include px2rem('margin-top',40);
+		@include px2rem('width',540);
+		@include px2px('font-size',28);
+		text-align: left;
 	}
 	button{
 		@include px2px('padding-left',0);
@@ -261,4 +276,7 @@ body{
 		color: $color;
 		background: #fff;
 	}
+}
+.show-keyboard{
+	@include px2rem('height',400);
 }

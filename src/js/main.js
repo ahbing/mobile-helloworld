@@ -5,12 +5,12 @@
 	var leftNav = document.querySelector('.main-nav');
 	var startX,startTime,moveX,isLeft,showNav;
 	var touchStart = function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var touch = e.touches[0];
 		startX = touch.pageX;
 	};
 	var touchMove = function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var touch = e.touches[0];
 		moveX = touch.pageX - startX;
 		// 滑动 距离过短  认为是 点击 直接return掉
@@ -20,7 +20,7 @@
 	}
 
 	var touchEnd = function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var isShowNav = leftNav.getAttribute('data-show');
 		var oldClassName,newClassName;
 
@@ -49,7 +49,7 @@
 	wrapper.addEventListener('touchend',touchEnd,false);
 })();
 
-
+//视频
 ;(function(){
 	var videoPage = document.querySelector('.video-page');
 	if(videoPage){
@@ -79,4 +79,25 @@
 		videoBtn.addEventListener('touchend',showVideo,false);
 		closeBtn.addEventListener('touchend',hideVideo,false);
 	}
+})();
+
+//监听软键盘
+;(function(){
+	var oBody = document.querySelector('body');
+	var formBox = document.querySelector('.form-box');
+	var oglHeight = oBody.offsetHeight;
+	var windowSizeChange = function(){
+		var tempHeight = document.querySelector('body').offsetHeight;
+		console.log(oglHeight);
+		console.log(tempHeight);
+		if(tempHeight == oglHeight) {
+        console.info("屏幕键盘隐藏");
+				formBox.classList.remove('show-keyboard');
+    } else {
+        console.info("键盘显示");
+				formBox.classList.add('show-keyboard');
+    }
+	}
+	// oBody.addEventListener('resize',windowSizeChange,false);
+	oBody.onresize = windowSizeChange;
 })();

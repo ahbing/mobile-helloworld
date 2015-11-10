@@ -22,17 +22,14 @@
 						<input type="text" name="name" placeholder="请输入姓名" required>
 					</p>
 					<p>
-						<!-- <select name="sex">
-							<option value="female">女</option>
-							<option value="male">男</option>
-						</select> -->
-					</p>
-
-					<p>
-						<input type="text" name="sex" placeholder="请选择性别">
+						<input type="text" name="sex" list="sexList" placeholder="请选择性别" required>
+						<datalist id="sexList">
+							<option value="小娘子"></option>
+							<option value="男子汉"></option>
+						<datalist>
 					</p>
 					<p>
-						<input type="text" name="college" placeholder="请输入院系">
+						<input type="text" name="college" placeholder="请输入院系" required>
 					</p>
 					<p>
 						<input type="text" name="number" placeholder="请输入学号" required>
@@ -42,7 +39,7 @@
 					</p>
 					<p>
 						<input type="text" name="department" list="deList"
-					 placeholder="请选择意向部门">
+					 placeholder="请选择意向部门" required>
 					 <datalist id="deList">
  						<option value="design"></option>
  						<option value="front-end"></option>
@@ -51,8 +48,8 @@
  					</datalist>
 				 </p>
 				 <p>
-					 <textarea type="text" name="intro" maxLength="140" placeholder='请填写自我介绍（140字符之内）'>
- 					 </textarea>
+					 <label>请填写自我介绍（140字符之内)</label>
+					 <textarea type="text" name="intro" maxLength="140" required></textarea>
 				 </p>
 
 					<button>提交</button>
