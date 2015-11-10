@@ -31,7 +31,6 @@
 	window.dpr = dpr;
 	window.rem = rem;
 })();
-
 ;(function(){
 	// common function
 	/*

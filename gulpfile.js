@@ -44,7 +44,7 @@ gulp.task('copyfonts', function () {
 gulp.task('auto',function(){
   gulp.watch('src/sass/*.scss', ['sass']);
   gulp.watch('src/js/*js', ['js']);
-  // gulp.watch('dist/css/*.css', ['css']);
+  gulp.watch('dist/css/*.css', ['css']);
   gulp.watch('src/images/*.*', ['images']);
   gulp.watch('src/video/*.*', ['copyvideo']);
   gulp.watch('src/fonts/*.*', ['copyfonts']);
@@ -57,7 +57,7 @@ gulp.task('serve', function () {
         }
     });
     gulp.watch("dist/js/*.js").on('change', browserSync.reload);
-    gulp.watch("dist/css/*.css").on('change', browserSync.reload);
+    // gulp.watch("dist/css/*.css").on('change', browserSync.reload);
     gulp.watch("dist/images/*.*").on('change', browserSync.reload);
 });
 gulp.task('default',['serve','auto'])

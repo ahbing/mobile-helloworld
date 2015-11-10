@@ -76,12 +76,22 @@ body{
 		}
 	}
 	.left-out{
-		@include leftInOut(-$w);
+		// 左划
+		@include leftInOut(-$w,.2);
 	}
 	.left-in{
-		@include leftInOut();
+		// 右划
+		@include leftInOut(0,.3);
 		// uc qq 360 等国产浏览器不支持 animation
 	}
+	.wrapper.left-out{
+		// 左划
+		@include leftInOut(0,.3);
+	};
+	.wrapper.left-in{
+		// 右划
+		@include leftInOut($w,.2);
+	};
 }
 .video-page{
 	width: 100%;
@@ -145,6 +155,7 @@ body{
 		@include px2rem('left',30);
 		@include px2rem('width',66);
 		@include px2rem('height',66);
+		background: red;
 		>div{
 			@include center;
 			@include px2rem('height',6);

@@ -53,17 +53,17 @@
   -ms-transform:rotate($deg*1deg);
   transform:rotate($deg*1deg);
 }
-@mixin leftInOut($left:0){
+@mixin leftInOut($left:0,$time:.3,$animation:ease-in){
   left: $left;
-  -webkit-transition:all .3s ease-in;
-  -moz-transition:all .3s ease-in;
-  -ms-transition:all .3s ease-in;
-  transition:all .3s ease-in;
+  -webkit-transition:all $time*1s $animation;
+  -moz-transition:all $time*1s $animation;
+  -ms-transition:all $time*1s $animation;
+  transition:all $time*1s $animation;
 }
-@mixin fadeInOut($v:0){
+@mixin fadeInOut($v:0,$time:.6,$animation:ease-in){
   opacity: $v;
-  -webkit-transition:all .6s ease-in;
-  -moz-transition:all .6s ease-in;
-  -ms-transition:all .6s ease-in;
-  transition:all .6s ease-in;
+  -webkit-transition:all $time*1s $animation;
+  -moz-transition:all $time*1s $animation;
+  -ms-transition:all $time*1s $animation;
+  transition:all $time*1s $animation;
 }
