@@ -152,13 +152,12 @@ body{
 	}
 	.more{
 		@include vCenter;
-		@include px2rem('left',30);
-		@include px2rem('width',66);
-		@include px2rem('height',66);
-		background: red;
+		@include px2rem('left',10);
+		@include px2rem('width',100);
+		@include px2rem('height',100);
 		>div{
 			@include center;
-			@include px2rem('height',6);
+			@include px2rem('height',3);
 			@include px2rem('width',32);
 			background: $color;
 		}
@@ -167,8 +166,8 @@ body{
 			@include px2rem('top',-20);
 			display: block;
 			content: '';
-			@include px2rem('height',6);
-			@include px2rem('width',32);
+			@include px2rem('height',4);
+			@include px2rem('width',38);
 			background: $color;
 		}
 		&:after{
@@ -176,8 +175,8 @@ body{
 			@include px2rem('top',20);
 			display: block;
 			content: '';
-			@include px2rem('height',6);
-			@include px2rem('width',32);
+			@include px2rem('height',4);
+			@include px2rem('width',38);
 			background: $color;
 		}
 	}
@@ -248,13 +247,16 @@ body{
 // joinUs
 
 .form-box{
-	width:100%;
+	// width:100%;
+	@include px2rem('width',540);
 	height: 100%;
 	overflow: auto;
+	margin: auto;
+	// background: red;
 	>form{
 		overflow: auto;
-		// @include px2rem('margin-top',60);
 		width: 100%;
+		margin: 0 auto;
 		height: 100%;
 		text-align: center;
 	}
@@ -262,30 +264,36 @@ body{
 	textarea,
 	button{
 		display: inline-block;
-		@include px2rem('width',540);
-		@include px2rem('height',50);
+		@include px2rem('width',516);
+		@include px2rem('height',66);
 		@include px2rem('margin-top',48);
-		@include px2px('font-size',28);
-		@include px2rem('padding-left',8);
-		@include px2rem('border-radius',8);
+		@include px2px('font-size',30);
+		@include px2rem('padding-left',18);
+		@include px2rem('border-radius',10);
 		border: 2px solid $color;
+	}
+	.half-name,
+	.half-sex{
+		display: inline-block;
+		float: left;
+		>input{
+			@include px2rem('width',220);
+		}
+	}
+	.half-sex{
+		float: right;
 	}
 	textarea{
-		@include px2rem('height',100);
-		@include px2rem('margin-top',20);
-	}
-	label{
-		display: inline-block;
-		@include px2rem('margin-top',40);
-		@include px2rem('width',540);
+		@include px2rem('height',160);
 		@include px2px('font-size',28);
-		text-align: left;
+		@include px2rem('line-height',28);
+		@include px2rem('padding-top',10);
 	}
 	button{
-		@include px2px('padding-left',0);
+		@include px2rem('width',540);
 		border: 2px solid $color;
-		color: $color;
-		background: #fff;
+		color: #fff;
+		background: #323a45;
 	}
 }
 .show-keyboard{

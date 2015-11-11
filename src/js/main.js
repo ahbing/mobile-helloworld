@@ -6,7 +6,7 @@
 	var moreBtn = document.querySelector('.more');
 	var startX,startTime,moveX,isLeft,showNav;
 	var touchStart = function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		if(e.target.className == 'more'){
 			var isShowNav = leftNav.getAttribute('data-show');
 			var oldClassName,newClassName;
@@ -37,7 +37,7 @@
 		isLeft = moveX > 0 ? false : true;
 	}
 	var touchEnd = function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		var isShowNav = Boolean(leftNav.getAttribute('data-show'));
 		var oldClassName,newClassName;
 		if(isLeft!== undefined && !isLeft  && isShowNav){
