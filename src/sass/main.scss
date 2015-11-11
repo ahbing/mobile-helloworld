@@ -6,15 +6,50 @@ index page scss entry
 		| - base
 		| - mixin
 		| - animation
+		| - font-style
 		| - main
 
  */
 
+
+@font-face {
+font-family: 'sh';
+src: url("./../fonts/sh.otf") format("opentype");
+}
+@font-face {
+font-family: 'thin';
+src: url("./../fonts/thin.otf") format("opentype");
+}
 @import "base.scss";
 @import "mixin.scss";
 @import "animation.scss";
 
-$color:#9B9B9B;
+$input:#303a46;
+$inputbg:#fbfbfb;
+
+::-webkit-input-placeholder {
+  font-family: sh;
+  color:$input;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-family: sh;
+  color:$input;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+  font-family: sh;
+  color:$input;  
+}
+:-ms-input-placeholder {  
+  font-family: sh;
+  color:$input;  
+}
+input-placeholder{
+	font-family: sh;
+	color:$input; 
+}
+
+// $color:#9B9B9B;
+$color: #323a45;
 $wh:100%;
 html,body{
 	width: $wh;
@@ -27,6 +62,9 @@ body{
 	body{font-family:Helvetica;}
 	@include px2px('font-size',36);
 	-webkit-overflow-scrolling: touch;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-stroke-width: 0.2px;
+	-moz-osx-font-smoothing: grayscale;
 }
 .container{
 	$w:72%;
@@ -46,8 +84,8 @@ body{
 			text-align: center;
 			width: $w;
 			>img{
-				@include px2rem('width',200);
-				@include px2rem('height',200);
+				@include px2rem('width',300);
+				@include px2rem('height',150);
 			  @include topCenter(106);
 			}
 			>.hw-title{
@@ -57,7 +95,7 @@ body{
 		}
 		.nav-list{
 			@include px2rem('width',296);
-			@include topCenter(460);
+			@include topCenter(360);
 			li{
 				@include px2rem('width',360);
 				@include px2rem('margin-bottom',60);
@@ -183,9 +221,9 @@ body{
 	.h-logo{
 		@include vCenter;
 		@include px2rem('right',30);
-		@include px2rem('width',70);
-		@include px2rem('height',70);
-		background: url('./../images/logo-normal.png') no-repeat left top;
+		@include px2rem('width',80);
+		@include px2rem('height',40);
+		background: url('./../images/hw-logo-normal.png') no-repeat left top;
 		background-size: cover;
 	}
 	>.index-box{
@@ -195,24 +233,26 @@ body{
 		text-align: center;
 		>img{
 			@include topCenter(254);
-			@include px2rem('width',100);
-			@include px2rem('width',100);
+			@include px2rem('width',240);
+			@include px2rem('height',120);
 
 		}
 		>.hw-title{
-			@include topCenter(380);
+			@include topCenter(360);
 			@include px2rem('font-size',48);
 		}
 		>.hw-intro{
 			@include px2rem('line-height',58);
 			@include px2px('font-size',36);
-			@include topCenter(468);
+			// @include topCenter(468);
+			@include topCenter(420);
 		}
 		>.see-video{
 			@include px2rem('width',218);
 			@include px2rem('height',50);
 			@include px2px('font-size',36);
-			@include topCenter(700);
+			// @include topCenter(700);
+			@include topCenter(590);
 			@include px2rem('left',-36);
 			// background: red;
 			&:before{
@@ -252,25 +292,35 @@ body{
 	height: 100%;
 	overflow: auto;
 	margin: auto;
-	// background: red;
+	>.hw-title{
+		@include px2rem('margin-top',60);
+		@include px2rem('margin-bottom',30);
+		width: 100%; 
+		@include px2rem('font-size',48);
+		@include px2rem('height',42);
+		text-align: center;
+		font-family: thin;
+		color: $color;
+	}
 	>form{
 		overflow: auto;
 		width: 100%;
 		margin: 0 auto;
-		height: 100%;
 		text-align: center;
 	}
 	input,
 	textarea,
-	button{
+	.button{
 		display: inline-block;
 		@include px2rem('width',516);
 		@include px2rem('height',66);
-		@include px2rem('margin-top',48);
-		@include px2px('font-size',30);
+		@include px2rem('margin-top',24);
+		@include px2px('font-size',38);
 		@include px2rem('padding-left',18);
 		@include px2rem('border-radius',10);
 		border: 2px solid $color;
+		font-family: sh;
+		background: $inputbg;
 	}
 	.half-name,
 	.half-sex{
@@ -285,15 +335,16 @@ body{
 	}
 	textarea{
 		@include px2rem('height',160);
-		@include px2px('font-size',28);
-		@include px2rem('line-height',28);
+		@include px2px('font-size',38);
+		@include px2rem('line-height',38);
 		@include px2rem('padding-top',10);
 	}
-	button{
+	.button{
 		@include px2rem('width',540);
+		@include px2rem('margin-top',24);
 		border: 2px solid $color;
 		color: #fff;
-		background: #323a45;
+		background: $color;
 	}
 }
 .show-keyboard{

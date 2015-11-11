@@ -17,29 +17,30 @@
 				<span class="h-logo"></span>
 			</header> <!-- end top header -->
 			<section class="form-box">
+				<p class="hw-title">HelloWorld</p>
 				<form action="#" method="#">
 					<p class="half-name">
-						<input type="text" name="name" placeholder="请输入姓名" required>
+						<input type="text" name="name" placeholder="姓名" required>
 					</p>
 					<p class="half-sex">
-						<input type="text" name="sex" list="sexList" placeholder="请选择性别" required>
+						<input type="text" name="sex" list="sexList" placeholder="性别" required>
 						<datalist id="sexList">
 							<option value="小娘子"></option>
 							<option value="男子汉"></option>
 						<datalist>
 					</p>
 					<p>
-						<input type="text" name="college" placeholder="请输入院系" required>
+						<input type="text" name="college" placeholder="院系" required>
 					</p>
 					<p>
-						<input type="text" name="number" placeholder="请输入学号" required>
+						<input type="text" name="number" placeholder="学号" required>
 					</p>
 					<p>
-						<input type="text" name="tel" placeholder="请输入手机号" required>
+						<input type="text" name="tel" placeholder="手机号" required>
 					</p>
 					<p>
 						<input type="text" name="department" list="deList"
-					 placeholder="请选择意向部门" required>
+					 placeholder="意向部门" required>
 					 <datalist id="deList">
  						<option value="design"></option>
  						<option value="front-end"></option>
@@ -48,25 +49,26 @@
  					</datalist>
 				 </p>
 				 <p>
-					 <textarea placeholder="请填写自我介绍（140字符之内)" type="text" name="intro" maxLength="140" required></textarea>
+					 <textarea placeholder="自我介绍（140字内)" type="text" name="intro" maxLength="140" required></textarea>
 				 </p>
 
-					<button>提交</button>
+					<input class="button" type="submit" value="提交"/>
 				</form>
 			</section>
 		</article><!--end index main-->
 
+		
 		<article data-show="false" class="main-nav">
 			<section class="nav-header">
-				<img src="./dist/images/logo-big.png" alt="logo">
-				<p class="hw-title">HelloWorld</p>
+				<img src="./dist/images/hw-logo-big.png" alt="logo">
+				<!--<p class="hw-title">HelloWorld</p>-->
 			</section>
 			<nav class="nav-list">
 				<ul>
-					<li><img src="./dist/images/home.png"><a href="#">Home</a></li>
-					<li><img src="./dist/images/home.png"><a href="#">Introduction</a></li>
-					<li><img src="./dist/images/home.png"><a href="#">News</a></li>
-					<li><img src="./dist/images/home.png"><a href="#">JoinUs</a></li>
+					<li><img src="./dist/images/home.png"><a href="/index.html">Home</a></li>
+					<li><img src="./dist/images/home.png"><a href="/Introduction">Introduction</a></li>
+					<li><img src="./dist/images/home.png"><a href="#/News">News</a></li>
+					<li><img src="./dist/images/home.png"><a href="/join.html">JoinUs</a></li>
 				</ul>
 			</nav>
 		</article><!--end left nav -->

@@ -5,28 +5,14 @@
 	var leftNav = document.querySelector('.main-nav');
 	var moreBtn = document.querySelector('.more');
 	var startX,startTime,moveX,isLeft,showNav;
+	var oldClassName,newClassName;
 	var touchStart = function(e){
 		//e.preventDefault();
-		if(e.target.className == 'more'){
-			var isShowNav = leftNav.getAttribute('data-show');
-			var oldClassName,newClassName;
-			if(isShowNav=='true'){
-				oldClassName = 'left-out';
-				newClassName = 'left-in';
-				leftNav.setAttribute('data-show','false');
-			}else if(isShowNav=='false'){
-				oldClassName = 'left-in';
-				newClassName = 'left-out';
-				leftNav.setAttribute('data-show','true');
-			}
-			replaceClass(leftNav,oldClassName,newClassName);
-			replaceClass(wrapper,oldClassName,newClassName);
-		}
 		var touch = e.touches[0];
 		startX = touch.pageX;
 	};
 	var touchMove = function(e){
-		//e.preventDefault();
+		e.preventDefault();
 		var touch = e.touches[0];
 		moveX = touch.pageX - startX;
 		// 滑动 距离过短  认为是 点击 直接return掉
@@ -38,25 +24,41 @@
 	}
 	var touchEnd = function(e){
 		//e.preventDefault();
-		var isShowNav = Boolean(leftNav.getAttribute('data-show'));
-		var oldClassName,newClassName;
-		if(isLeft!== undefined && !isLeft  && isShowNav){
+		var isShowNav = leftNav.getAttribute('data-show');
+		//var oldClassName,newClassName;
+		if(isLeft!== undefined && !isLeft  && isShowNav === 'false'){
 			// 不是左划 且 nav 不显示  呼出
 			oldClassName = 'left-out';
 			newClassName = 'left-in';
 			leftNav.setAttribute('data-show','true');
-		}else if(isLeft && isShowNav){
+		}else if(isLeft && isShowNav === 'true'){
 		 //  左划 且 nav 已经显示  就隐藏
 			// 隐藏
 			oldClassName = 'left-in';
 			newClassName = 'left-out';
-			leftNav.setAttribute('data-show','fasle');
-		}else {
-			return
+			leftNav.setAttribute('data-show','false');
+		}else if(e.target.className == 'more'){
+			var isShowNav = leftNav.getAttribute('data-show');
+			console.log(typeof isShowNav);
+			if(isShowNav==='true'){
+				oldClassName = 'left-in';
+				newClassName = 'left-out';
+				leftNav.setAttribute('data-show','false');
+			}else if(isShowNav==='false'){
+				oldClassName = 'left-out';
+				newClassName = 'left-in';
+				leftNav.setAttribute('data-show','true');
+			}else{
+				return;
+			}
+		}else{
+			return;
 		}
+
 		replaceClass(leftNav,oldClassName,newClassName);
 		replaceClass(wrapper,oldClassName,newClassName);
 	}
+
 
 	// wrapper 上增加监听
 	wrapper.addEventListener('touchstart',touchStart,false);
