@@ -67,3 +67,19 @@
   -ms-transition:all $time*1s $animation;
   transition:all $time*1s $animation;
 }
+
+@mixin flex($v:row){
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: $v;
+  -moz-flex-direction: $v;
+  -ms-flex-direction: $v;
+}
+@mixin justifyContent($v:space-between){
+  -webkit-justify-content:$v;
+  -moz-justify-content:$v;
+  -ms-justify-content:$v;
+  justify-content:$v;
+}

@@ -7,8 +7,10 @@
 	<link rel="stylesheet" href="./dist/css/main.css">
 </head>
 <body>
+	<p class="error-info hide-fade"></p>
+	<p class="remain-info hide-fade"></p>
 	<div class="container">
-		<article class="wrapper">
+		<article class="wrapper left-out">
 			<header>
 				<span class="more">
 					<div></div>
@@ -19,46 +21,49 @@
 			<section class="form-box">
 				<p class="hw-title">HelloWorld</p>
 				<form action="#" method="#">
-					<p class="half-name">
+					<div class="half-name">
 						<input type="text" name="name" placeholder="姓名" required>
-					</p>
-					<p class="half-sex">
-						<input type="text" name="sex" list="sexList" placeholder="性别" required>
-						<datalist id="sexList">
-							<option value="小娘子"></option>
-							<option value="男子汉"></option>
-						<datalist>
-					</p>
-					<p>
+					</div>
+					<div class="half-sex">
+						<span class="sim-input">性别选择</span>
+						<ul class="data-list hide-fade">
+							<li>小娘子</li>
+							<li>男子汉</li>
+						</ul>
+						<input type="hidden" name="sex" required/>
+					</div>
+					<div>
 						<input type="text" name="college" placeholder="院系" required>
-					</p>
-					<p>
-						<input type="text" name="number" placeholder="学号" required>
-					</p>
-					<p>
-						<input type="text" name="tel" placeholder="手机号" required>
-					</p>
-					<p>
-						<input type="text" name="department" list="deList"
-					 placeholder="意向部门" required>
-					 <datalist id="deList">
- 						<option value="design"></option>
- 						<option value="front-end"></option>
- 						<option value="back-end"></option>
- 						<option value="server"></option>
- 					</datalist>
-				 </p>
-				 <p>
+					</div>
+					<div>
+						<input type="tel" name="number" placeholder="学号" minlength='8' maxlength='8' required>
+					</div>
+					<div>
+						<input type="tel" name="tel" placeholder="手机号" minlength='11' maxlength='11' required>
+					</div>
+					<div>
+						<span class="sim-input">意向部门</span>
+						<ul class="data-list hide-fade">
+							<li>design</li>
+	 						<li>front-end</li>
+	 						<li>back-end</li>
+							<li>server</li>
+	 						<li>server</li>
+						</ul>
+						<input type="hidden" name="department" required>
+				</div>
+				 <div>
 					 <textarea placeholder="自我介绍（140字内)" type="text" name="intro" maxLength="140" required></textarea>
-				 </p>
-
-					<input class="button" type="submit" value="提交"/>
+				 </div>
+				 <div>
+ 					<input class="button" type="submit" value="提交"/>
+ 				</div>
 				</form>
 			</section>
 		</article><!--end index main-->
 
-		
-		<article data-show="false" class="main-nav">
+
+		<article data-show="false" class="main-nav left-out">
 			<section class="nav-header">
 				<img src="./dist/images/hw-logo-big.png" alt="logo">
 				<!--<p class="hw-title">HelloWorld</p>-->
@@ -75,5 +80,6 @@
 	</div>
 	<script src="./dist/js/init.js"></script>
 	<script src="./dist/js/main.js"></script>
+
 </body>
 </html>
