@@ -1,8 +1,8 @@
 @mixin px2rem($name, $px){
-    // 适配 uc qq 浏览器
-    @include px2px($name, $px);
+    @include px2px($name, $px);// 适配 uc qq 浏览器
     #{$name}: $px / 196 * 1rem;
 }
+
 //想要在不同dpr下保持一致的css属性可以用px2px
 @mixin px2px($name, $px){
     #{$name}: round($px / 2) * 1px;
@@ -25,6 +25,8 @@
         #{$name}: $px * 2px;
     }
 }
+
+
 
 @mixin center{
   position: absolute;
@@ -60,6 +62,13 @@
   -ms-transition:all $time*1s $animation;
   transition:all $time*1s $animation;
 }
+@mixin topInOut($top:0,$time:.3,$animation:ease-in){
+  top: $top;
+  -webkit-transition:all $time*1s $animation;
+  -moz-transition:all $time*1s $animation;
+  -ms-transition:all $time*1s $animation;
+  transition:all $time*1s $animation;
+}
 @mixin fadeInOut($v:0,$time:.6,$animation:ease-in){
   opacity: $v;
   -webkit-transition:all $time*1s $animation;
@@ -82,4 +91,40 @@
   -moz-justify-content:$v;
   -ms-justify-content:$v;
   justify-content:$v;
+}
+
+@mixin origin($x:0,$y:0){
+  -webkit-transform-origin:$x/2*1px $y/2*1px;
+  -moz-transform-origin:$x/2*1px $y/2*1px;
+  transform-origin:$x/2*1px $y/2*1px;
+
+  [data-dpr="2"] & {
+    -webkit-transform-origin:$x*1px $y*1px;
+    -moz-transform-origin:$x*1px $y*1px;
+    transform-origin:$x*1px $y*1px;
+  }
+  // for mx3
+  [data-dpr="2.5"] & {
+      -webkit-transform-origin:($x*2.5/2)*1px ($y* 2.5/2)*1px;
+      -moz-transform-origin:($x*2.5/2)*1px ($y* 2.5/2)*1px;
+      transform-origin:($x*2.5/2)*1px ($y* 2.5/2)*1px;
+  }
+  // for 小米note
+  [data-dpr="2.75"] & {
+      -webkit-transform-origin:($x*2.75/2)*1px ($y* 2.75/2)*1px;
+      -moz-transform-origin:($x*2.75/2)*1px ($y* 2.75/2)*1px;
+      transform-origin:($x*2.75/2)*1px ($y* 2.75/2)*1px;
+  }
+  [data-dpr="3"] & {
+    -webkit-transform-origin:($x*3/2)*1px ($y* 3/2)*1px;
+    -moz-transform-origin:($x*3/2)*1px ($y* 3/2)*1px;
+    transform-origin:($x*3/2)*1px ($y* 3/2)*1px;
+  }
+  // for 三星note4
+  [data-dpr="4"] & {
+    -webkit-transform-origin:($x*4/2)*1px ($y*4/2)*1px;
+    -moz-transform-origin:($x*4/2)*1px ($y*4/2)*1px;
+    transform-origin:($x*4/2)*1px ($y*4/2)*1px;
+  }
+
 }

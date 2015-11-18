@@ -358,3 +358,142 @@
 		})
   }
 })();
+
+
+/******************************************************
+  start intro
+  2015-5-16 中国足球队 基本宣告 告别2018 世界杯
+ ******************************************************/
+;(function(){
+  var technology = document.querySelector('#technology');
+  if(technology){
+    var container = document.querySelector('.container');
+    var allSmallBall = technology.querySelectorAll('.small-ball');
+    var allBigBall = container.querySelectorAll('.big-ball');
+    var introBox = container.querySelector('.intro-box');
+    var backBtn = introBox.querySelector('.back');
+    var allBigBallArr = Array.prototype.slice.call(allBigBall);
+    var requestAnimationFrame = window.requestAnimationFrame||
+      window.mozRequestAnimationFrame||
+      window.webkitRequestAnimationFrame||
+      window.msRequestAnimationFrame;
+    var cancelAniamtionFrame = window.cancelAniamtionFrame||  window.mozCancelAnimationFrame;
+    var myReq; // 当前动画值
+    var toggleTouchTech; // 是否点击了技术部
+    /*
+    展示部门详情页  有一个转场效果
+     */
+     var showIntro = function(){
+       replaceClass(introBox,'down-out','down-in');
+     };
+     var hideIntro = function(){
+       replaceClass(introBox,'down-in','down-out');
+     };
+
+    /*
+    stop all big move
+     */
+    var stopBallMove = function(){
+      allBigBallArr.forEach(function(){
+        //停止所有动画
+        window.cancelAnimationFrame(myReq--);
+      });
+    };
+
+    /*
+    @p item object开始运动的对象
+     */
+    var ballMove = function(allBigBallArr){
+      var WIDTH = container.offsetWidth;
+      var HEIGHT = container.offsetHeight;
+      allBigBallArr.forEach(function(item,index){
+        var random = Math.floor(Math.random());
+        var baseSpeed = (index+1)*dpr/2;
+        var speedX = random>=.5? baseSpeed : -baseSpeed,
+            speedY = random>=.5? baseSpeed : -baseSpeed;
+        function startMove(){
+          var rect = item.getBoundingClientRect();
+          var left = rect.left,
+              top = rect.top,
+              right = rect.right,
+              bottom = rect.bottom,
+              width = rect.width,
+              height = rect.height;
+          if(top<=0){
+            speedY = -speedY;
+          }
+          if(bottom>=HEIGHT){
+            speedY = speedY>=0 ? -speedY : speedY;
+          }
+          if(left<=0||right>=WIDTH){
+            speedX = -speedX;
+          }
+          item.style.left = item.offsetLeft+speedX+'px';
+          item.style.top = item.offsetTop+speedY+'px';
+          myReq = requestAnimationFrame(startMove);
+        }
+        myReq = requestAnimationFrame(startMove);
+      });
+    };
+
+    /*
+    * item 开始运动
+     */
+    ballMove(allBigBallArr);
+
+    allBigBallArr.forEach(function(item){
+      //  每一个大气球增加监听事件
+      item.addEventListener('touchend',function(e){
+        e.preventDefault();
+        // stop all big ball move
+        // 停止或者启动所有的大圈滚动
+        stopBallMove();
+        if(item && !item.id){
+          //除技术部之外的部门 显示其详情
+          var value = item.innerHTML;
+          console.log(value);
+          showIntro();
+        }
+      },false);
+    });
+
+    technology.addEventListener('touchend',function(e){
+      e.preventDefault();
+      // small ball add className 'show-small'
+      // small ball addEventListener
+      // 显示小气泡的详情信息
+      var target = e.target;
+      if(target.tagName.toLowerCase()=='p'){
+        // showIntro
+        var value = target.innerHTML;
+        console.log(value);
+        showIntro();
+      }else{
+        // 再次点击技术部 大气泡 继续动阿动
+        if(toggleTouchTech){
+          toggleTouchTech = false;
+          // console.log('要继续动了');
+          ballMove(allBigBallArr);
+        }else{
+          toggleTouchTech = true;
+        }
+      }
+      [].slice.call(allSmallBall).forEach(function(item){
+        var itemClass = item.classList;
+        if(item.classList.toString().indexOf('show-small')!==-1){
+          itemClass.remove('show-small');
+        }else{
+          stopBallMove();
+          itemClass.add('show-small');
+        }
+      });
+    },false)
+    backBtn.addEventListener('touchend',function(e){
+      e.preventDefault();
+      // 隐藏intro面板
+      hideIntro();
+      // 继续播放动画
+      ballMove(allBigBallArr);
+    },false)
+  }
+})();

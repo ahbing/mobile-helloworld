@@ -431,3 +431,157 @@ body{
 .show-keyboard{
 	@include px2rem('height',400);
 }
+
+
+/*
+  ************************
+  *start intro page
+  ************************
+ */
+
+.ball-box,
+.intro-box{
+  width: 100%;
+  height: 100%;
+}
+
+.ball-box{
+  // 技术部圆的半径
+  $R:100;
+  // 技术部下的圆半径
+  $r:50;
+  >.big-ball{
+    position: absolute;
+    z-index: 233;
+    background: #fff;
+    @include px2rem('width',2*$R);
+    @include px2rem('height',2*$R);
+    border: 1px solid #ccc;
+    @include px2px('border-width',2);
+    @include px2px('line-height',2*$R);
+    border-radius: 100%;
+    text-align: center;
+  }
+  // 按顺序确定大小  left top 的函数随便来的
+  // 我也不知道下面的为什么是下面这个函数公式
+  @for $i from 1 through 4{
+    >.big-ball-#{$i}{
+      -webkit-transform: scale($i/10+.6);
+      -moz-transform: scale($i/10+.6);
+      transform: scale($i/10+.6);
+      @if $i<=2 {
+        @include px2px('left',$i*200);
+        @include px2px('top',$i*100);
+      }@else{
+        @include px2px('left',$i*60);
+        @include px2px('top',($i*$i)*50);
+      }
+    }
+  }
+  .small-ball{
+    position: absolute;
+    z-index: -1111;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    // 初始left值
+    $l: 2*$r;
+    // 初始top值
+    // 根号3 约等于1.73
+    $t:($R+2*$r)*1.73/3-$r;
+    @include px2rem('width',2*$r);
+    @include px2rem('height',2*$r);
+    border: 1px solid #ccc;
+    @include px2px('border-width',2);
+    @include px2px('line-height',2*$r);
+    text-align: center;
+    @include px2px('font-size',24);
+    border-radius: 100%;
+    &.show-small{
+      z-index: 2333;
+      visibility: visible;
+      @include px2rem('left',-$l);
+      @include px2rem('top',-$t);
+      background: #fff;
+      @for $i from 1 through 6{
+        $x: 2*$r+$R;
+        $y: $t+$R;
+        &.small-ball-#{$i}{
+          // -webkit-transform-origin:$x*1px $y*1px;
+          // -moz-transform-origin:$x*1px $y*1px;
+          // transform-origin:$x*1px $y*1px;
+          @include origin($x,$y);
+          -webkit-transform: rotate($i*60deg);
+          -moz-transform: rotate($i*60deg);
+          transform: rotate($i*60deg);
+          -webkit-transition:all .5s ease-in;
+        	-moz-transition:all .5s ease-in;
+        	transition:all .5s ease-in;
+        }
+      }
+      @for $i from 1 through 6{
+        $x: center;
+        $y: center;
+        >.small-ball-self-#{$i}{
+          -webkit-transform-origin:$x $y;
+          -moz-transform-origin:$x $y;
+          transform-origin:$x $y;
+          -webkit-transform: rotate($i*60deg*-1);
+          -moz-transform: rotate($i*60deg*-1);
+          transform: rotate($i*60deg*-1);
+        }
+      }
+    }
+  }
+}
+
+.intro-box{
+  position: absolute;
+  left: 0;
+  // top: 0;
+  overflow: auto;
+  background: #fff;
+  z-index: 2333;
+  &.down-out{
+    @include topInOut(100%);
+    @include fadeInOut(0);
+  }
+  &.down-in{
+    @include topInOut(0,.4);
+    @include fadeInOut(1,.6);
+  }
+  >.d-name{
+    width: 100%;
+    @include px2rem('height',260);
+    @include px2rem('line-height',320);
+    // background: blue;
+    text-align: center;
+  }
+  >.intro-text{
+    @include px2rem('width',680);
+    @include px2rem('height',680);
+    margin: 0 auto;
+    // background: green;
+    overflow: auto;
+    @include px2px('font-size',22);
+    @include px2px('line-height',32);
+    text-indent: 22pt;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  >.back{
+    @include px2rem('width',60);
+    @include px2rem('height',60);
+    margin: 0 auto;
+    @include px2rem('margin-top',60);
+    // background: blue;
+    border-radius: 100%;
+    @include px2rem('line-height',60);
+    text-align: center;
+    color: #000;
+    border: 2px solid #000;
+    @include px2px('font-size',40);
+  }
+
+}
