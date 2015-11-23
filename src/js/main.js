@@ -460,23 +460,21 @@
     technology.addEventListener('touchend',function(e){
       e.preventDefault();
       // small ball add className 'show-small'
-      // small ball addEventListener
       // 显示小气泡的详情信息
       var target = e.target;
       if(target.tagName.toLowerCase()=='p'){
         // showIntro
         var value = target.innerHTML;
-        console.log(value);
+        // console.log(value);
         showIntro();
       }else{
         // 再次点击技术部 大气泡 继续动阿动
         if(toggleTouchTech){
           toggleTouchTech = false;
-          // console.log('要继续动了');
-          ballMove(allBigBallArr);
         }else{
           toggleTouchTech = true;
         }
+        ballMove(allBigBallArr);
       }
       [].slice.call(allSmallBall).forEach(function(item){
         var itemClass = item.classList;
