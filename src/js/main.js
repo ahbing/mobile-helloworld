@@ -1,63 +1,8 @@
-;(function(){
-    function device(ua) {
-        var os = this.os = {},browser = this.browser = {},
-        webkit = ua.match(/Web[kK]it[\/]{0,1}([\d.]+)/),
-        android = ua.match(/(Android);?[\s\/]+([\d.]+)?/),
-        osx = !!ua.match(/\(Macintosh\; Intel /),
-        ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
-        ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/),
-        iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
-        webos = ua.match(/(webOS|hpwOS)[\s\/]([\d.]+)/),
-        touchpad = webos && ua.match(/TouchPad/),
-        kindle = ua.match(/Kindle\/([\d.]+)/),
-        silk = ua.match(/Silk\/([\d._]+)/),
-        blackberry = ua.match(/(BlackBerry).*Version\/([\d.]+)/),
-        bb10 = ua.match(/(BB10).*Version\/([\d.]+)/),
-        rimtabletos = ua.match(/(RIM\sTablet\sOS)\s([\d.]+)/),
-        playbook = ua.match(/PlayBook/),
-        uc = ua.match(/UCBrowser\/([\w.\s]+)/),
-        chrome = ua.match(/Chrome\/([\d.]+)/) || ua.match(/CriOS\/([\d.]+)/),
-        firefox = ua.match(/Firefox\/([\d.]+)/),
-        ie = ua.match(/MSIE\s([\d.]+)/) || ua.match(/Trident\/[\d](?=[^\?]+).*rv:([0-9.].)/),
-        webview = !chrome && ua.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/),
-        safari = webview || ua.match(/Version\/([\d.]+)([^S](Safari)|[^M]*(Mobile)[^S]*(Safari))/),
-        orientation = Math.abs(window.orientation)
-
-        if (browser.webkit = !!webkit) browser.version = webkit[1]
-
-        if (android) os.android = true, os.version = android[2]
-        if (iphone && !ipod) os.ios = os.iphone = true, os.version = iphone[2].replace(/_/g, '.')
-        if (ipad) os.ios = os.ipad = true, os.version = ipad[2].replace(/_/g, '.')
-        if (ipod) os.ios = os.ipod = true, os.version = ipod[3] ? ipod[3].replace(/_/g, '.') : null
-        if (webos) os.webos = true, os.version = webos[2]
-        if (touchpad) os.touchpad = true
-        if (blackberry) os.blackberry = true, os.version = blackberry[2]
-        if (bb10) os.bb10 = true, os.version = bb10[2]
-        if (rimtabletos) os.rimtabletos = true, os.version = rimtabletos[2]
-        if (playbook) browser.playbook = true
-        if (uc) os.uc = true, os.ucversion = uc[1]
-        if (kindle) os.kindle = true, os.version = kindle[1]
-        if (silk) browser.silk = true, browser.version = silk[1]
-        if (!silk && os.android && ua.match(/Kindle Fire/)) browser.silk = true
-        if (orientation !== 90) os.protrait = true
-        if (orientation === 90) os.landscape = true
-
-        if (chrome) browser.chrome = true, browser.version = chrome[1]
-        if (firefox) browser.firefox = true, browser.version = firefox[1]
-        if (ie) browser.ie = true, browser.version = ie[1]
-        if (safari && (osx || os.ios)) {browser.safari = true; if (osx) browser.version = safari[1]}
-        if (webview) browser.webview = true
-
-        os.tablet = !!(ipad || playbook || (android && !ua.match(/Mobile/)) ||
-        (firefox && ua.match(/Tablet/)) || (ie && !ua.match(/Phone/) && ua.match(/Touch/)))
-        os.phone  = !!(!os.tablet && !os.ipod && (android || iphone || webos || blackberry || bb10 ||
-        (chrome && ua.match(/Android/)) || (chrome && ua.match(/CriOS\/([\d.]+)/)) ||
-        (firefox && ua.match(/Mobile/)) || (ie && ua.match(/Touch/))))
-    }
-
-    window.Device = new device(navigator.userAgent)
-
-})();
+var requestAnimationFrame = window.requestAnimationFrame||
+  window.mozRequestAnimationFrame||
+  window.webkitRequestAnimationFrame||
+  window.msRequestAnimationFrame;
+var cancelAniamtionFrame = window.cancelAniamtionFrame||  window.mozCancelAnimationFrame;
 ;(function(){
 	//  呼出 隐藏 侧边栏
 	var wrapper = document.querySelector('.wrapper');
@@ -373,11 +318,7 @@
     var introBox = container.querySelector('.intro-box');
     var backBtn = introBox.querySelector('.back');
     var allBigBallArr = Array.prototype.slice.call(allBigBall);
-    var requestAnimationFrame = window.requestAnimationFrame||
-      window.mozRequestAnimationFrame||
-      window.webkitRequestAnimationFrame||
-      window.msRequestAnimationFrame;
-    var cancelAniamtionFrame = window.cancelAniamtionFrame||  window.mozCancelAnimationFrame;
+
     var myReq; // 当前动画值
     var toggleTouchTech; // 是否点击了技术部
     /*
@@ -493,5 +434,94 @@
       // 继续播放动画
       ballMove(allBigBallArr);
     },false)
+  }
+})();
+
+/*
+news
+ */
+;(function(){
+  var newsBox = document.querySelector('.news-box');
+  if(newsBox){
+    var newsTimeLine = newsBox.querySelector('.new-time-line');
+    var ulTimeLine = newsTimeLine.querySelector('ul');
+    var newItme = ulTimeLine.querySelectorAll('li');
+    var newItemA = ulTimeLine.querySelectorAll('a');
+    var timeLineWidth = newsTimeLine.offsetWidth-4;  // 时间线的div宽度 减去border
+    var itemLiWidth = newItme[0].offsetWidth; // 每一个li的长度
+    var itemLen = newItme.length; //Li的个数
+    var startX,moveX; //touch 初始值 和 移动值
+    // 动态设置ul长度
+    var ulWidth = itemLen*itemLiWidth;
+    ulTimeLine.style.width = ulWidth+'px';
+    //默认展示最后一个item 对应的数据
+    newItemA[newItemA.length-1].classList.add('active');
+    /*
+    * checkActive检测active的item
+    * @param{Number} 结束时的left值
+     */
+    var checkActive = function(endLeft){
+      // 确定中间的选项被激活 添加 active class
+      if(itemLen<3&&endLeft>0){
+        newItemA[0].classList.add('active');
+      }else if(itemLen>=3&&endLeft<=0){
+        var index = Math.round(Math.abs(endLeft)/itemLiWidth+1);
+        newItemA[index].classList.add('active');
+      }
+    }
+    newsTimeLine.addEventListener('touchstart',function(e){
+      startX = e.touches[0].clientX;
+      // 清空所有active class
+      Array.prototype.slice.call(newItemA).forEach(function(item){
+        if(item.classList.toString().indexOf('active')!==-1){
+          item.classList.remove('active');
+        }
+      })
+    },false);
+
+    newsTimeLine.addEventListener('touchmove',function(e){
+      moveX = e.touches[0].clientX - startX;
+    },false);
+
+
+    newsTimeLine.addEventListener('touchend',function(e){
+      e.stopPropagation(); // 禁止呼出侧边栏
+      var moveValue=0; // 已经move的值 初始为0
+      var startLeft = startLeft?startLeft:0;  // 初始的left值
+      var endLeft = 0;  //检测结束时的 left值
+      var speedX = moveX/50;
+      var startMove = function(){
+        speedX?speedX =speedX*1.1 :  moveX/50// 初始速度
+        startLeft= ulTimeLine.offsetLeft;
+        moveValue +=Math.abs(speedX);
+        if(moveX>0&&startLeft>=0){
+          ulTimeLine.style.left=0;
+          endLeft = ulTimeLine.offsetLeft;
+          checkActive(endLeft);
+          return cancelAnimationFrame(myAnimation);
+        }
+        if(moveX<0&& -startLeft>=ulWidth-timeLineWidth){
+          ulTimeLine.style.right = 0;
+          endLeft = ulTimeLine.offsetLeft;
+          checkActive(endLeft);
+          return cancelAnimationFrame(myAnimation);
+        }
+        // 移动一定距离停止
+        if(moveValue>=Math.abs(moveX)*1.4){
+          speedX = speedX/10;
+          endLeft = -ulTimeLine.offsetLeft;
+          var index = Math.round(endLeft/itemLiWidth);
+          endLeft = -itemLiWidth*index;
+          ulTimeLine.style.left = endLeft+'px';
+          checkActive(endLeft);
+          console.log('========================');
+          return cancelAnimationFrame(myAnimation)
+        }
+        ulTimeLine.style.left = startLeft+speedX+'px';
+        myAnimation = requestAnimationFrame(startMove);
+      }
+      myAnimation = requestAnimationFrame(startMove)
+    },false);
+
   }
 })();
